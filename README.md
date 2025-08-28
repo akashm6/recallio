@@ -1,6 +1,6 @@
 # recallio
 
-**recallio** is a modern **spaced-repetition study app. It helps you **learn faster and remember longer** by scheduling reviews at the right time using an **SM-2 inspired algorithm**. recallio combines a **sleek shadcn-style UI**, **JWT authentication**, and **offline-friendly queues** to deliver a startup-grade flashcard experience.
+**recallio** is a modern spaced-repetition study app. It helps you **learn faster and remember longer** by scheduling reviews at the right time using an **SM-2 inspired algorithm**. recallio combines a **sleek shadcn-style UI**, **JWT authentication**, and **offline-friendly queues** to deliver a startup-grade flashcard experience.
 
 **Live App:** [recall.app](https://recallio-five.vercel.app/)  
 **Demo Video:** [Watch here](demo_link_here)  
