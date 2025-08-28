@@ -9,6 +9,7 @@ import deckRoutes from "./routes/decks.js"
 import cardRoutes from "./routes/cards.js"
 import searchRoutes from "./routes/search.js"
 import statsRoutes from "./routes/stats.js"
+import helmet from "helmet"
 
 const app = express()
 app.use(cors({ origin: ["http://localhost:5173"], credentials: true }))
