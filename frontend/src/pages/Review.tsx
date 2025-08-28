@@ -91,10 +91,10 @@ export default function Review(){
         <Button size="lg" onClick={()=>setShowBack(true)}>Show answer (Space)</Button>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-          <Button variant="outline" onClick={()=>answer(0)}>Again (1)</Button>
-          <Button variant="outline" onClick={()=>answer(1)}>Hard (2)</Button>
-          <Button variant="secondary" onClick={()=>answer(2)}>Good (3)</Button>
-          <Button onClick={()=>answer(3)}>Easy (4)</Button>
+          <Button variant="outline" aria-label="Again" onClick={()=>answer(0)}>Again (1)</Button>
+          <Button variant="outline" aria-label="Hard" onClick={()=>answer(1)}>Hard (2)</Button>
+          <Button variant="secondary" aria-label="Good" onClick={()=>answer(2)}>Good (3)</Button>
+          <Button aria-label="Easy" onClick={()=>answer(3)}>Easy (4)</Button>
         </div>
       )}
     </div>
