@@ -14,7 +14,7 @@ export default function App(){
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="h-8 w-8 rounded-2xl bg-white"></div>
-            <Link to="/decks" className="text-lg font-semibold">Recall</Link>
+            <Link to="/decks" className="text-lg font-semibold">recallio</Link>
             {token && (
               <nav className="ml-4 hidden md:flex items-center gap-1">
                 <Link to="/decks" className={cn("px-3 py-1.5 rounded-2xl text-sm", loc.pathname.startsWith("/decks") ? "bg-zinc-900" : "hover:bg-zinc-900/60")}>Decks</Link>
