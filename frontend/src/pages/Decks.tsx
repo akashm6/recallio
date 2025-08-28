@@ -66,7 +66,7 @@ export default function Decks() {
       const res = await api.get(`/decks/${id}/export`, {
         responseType: "blob",
       });
-      
+
       // wraps binary csv into a blob and declare mime type
       const blob = new Blob([res.data], { type: "text/csv" });
 
@@ -148,12 +148,13 @@ export default function Decks() {
                   <Download className="h-4 w-4 mr-2" />
                   Export
                 </Button>
-                <label className="cursor-pointer">
-                  <input
-                    type="file"
-                    accept=".csv"
-                    className="hidden"
-                    onChange={async (e) => {
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    const input = document.createElement("input");
+                    input.type = "file";
+                    input.accept = ".csv";
+                    input.onchange = async (e: any) => {
                       const file = e.target.files?.[0];
                       if (!file) return;
                       const form = new FormData();
@@ -161,17 +162,14 @@ export default function Decks() {
                       await api.post(`/decks/${d._id}/import`, form, {
                         headers: { "Content-Type": "multipart/form-data" },
                       });
-                      e.currentTarget.value = "";
                       await load();
-                    }}
-                  />
-                  <span>
-                    <Button variant="outline">
-                      <Upload className="h-4 w-4 mr-2" />
-                      Import
-                    </Button>
-                  </span>
-                </label>
+                    };
+                    input.click();
+                  }}
+                >
+                  <Upload className="h-4 w-4 mr-2" />
+                  Import
+                </Button>
               </div>
             </CardBody>
           </Card>
