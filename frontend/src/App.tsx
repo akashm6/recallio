@@ -8,13 +8,19 @@ export default function App(){
   const { token, logout } = useAuthStore()
   const nav = useNavigate()
   const loc = useLocation()
+
+  const isAuthRoute = loc.pathname.startsWith("/login") || loc.pathname.startsWith("/register")
+
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-40 border-b border-zinc-800/60 bg-black/40 backdrop-blur">
+      <header className={cn(
+        "sticky top-0 z-40 border-b border-zinc-800/60 bg-black/40 backdrop-blur",
+        isAuthRoute ? "bg-transparent border-transparent" : ""
+      )}>
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-2xl bg-white"></div>
-            <Link to="/decks" className="text-lg font-semibold">recallio</Link>
+            <div className="h-8 w-8 rounded-2xl bg-white" />
+            <Link to={token ? "/decks" : "/"} className="text-lg font-semibold">recallio</Link>
             {token && (
               <nav className="ml-4 hidden md:flex items-center gap-1">
                 <Link to="/decks" className={cn("px-3 py-1.5 rounded-2xl text-sm", loc.pathname.startsWith("/decks") ? "bg-zinc-900" : "hover:bg-zinc-900/60")}>Decks</Link>
@@ -29,9 +35,14 @@ export default function App(){
           </div>
         </div>
       </header>
-      <main className="max-w-6xl mx-auto px-4 py-6">
+
+      <main className={cn(
+        "max-w-6xl mx-auto px-4 py-6",
+        isAuthRoute ? "max-w-none px-0 py-0" : ""
+      )}>
         <Outlet />
       </main>
+
       {token && (
         <div className="fixed bottom-6 right-6 hidden md:flex gap-2">
           <Link to="/dashboard"><Button variant="secondary" size="lg"><LayoutDashboard className="h-5 w-5 mr-2"/>Progress</Button></Link>
