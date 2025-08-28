@@ -62,25 +62,34 @@ export default function Decks() {
   };
 
   const exportDeck = async (id: string) => {
+    try {
+      const res = await api.get(`/decks/${id}/export`, {
+        responseType: "blob",
+      });
+      
+      // wraps binary csv into a blob and declare mime type
+      const blob = new Blob([res.data], { type: "text/csv" });
 
-    const res = await api.get(`/decks/${id}/export`, { responseType: "blob" });
-    // wraps binary csv into a blob and declare mime type
-    const blob = new Blob([res.data], { type: "text/csv" });
+      // parses filename and adds fallbacks for filenames
+      const disp = res.headers["content-disposition"] as string | undefined;
+      const match = disp?.match(/filename="([^"]+)"/i);
+      const filename = match?.[1] ?? `deck-${id}.csv`;
 
-    // parses filename and adds fallbacks for filenames
-    const disp = res.headers["content-disposition"] as string | undefined;
-    const match = disp?.match(/filename="([^"]+)"/i);
-    const filename = match?.[1] ?? `deck-${id}.csv`;
-    
-    // creates a temp href and downloads from it 
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    window.URL.revokeObjectURL(url);
+      // creates a temp href and downloads from it
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Export failed: ", err);
+      alert(
+        "Could not export deck. Please check your connection or login again."
+      );
+    }
   };
 
   return (
