@@ -19,3 +19,22 @@
   Track your streak and visualize activity with a **heatmap of daily reviews**.  
 - **Offline & Optimistic**  
   Queues are cached locally; reviews apply instantly and sync when back online.  
+
+## Tech Stack
+
+- **Backend:** Node.js, Express, MongoDB Atlas, Mongoose, JWT  
+- **Frontend:** React + Vite, TypeScript, Zustand, TailwindCSS (shadcn-style components)  
+
+## Demo
+
+**[Watch the demo](demo_link_here)** to see recallio in action.  
+
+## Roadmap
+- **Enhanced Card Editor**  
+  Rich text, images, and Markdown support.  
+- **Mobile-Friendly UX**  
+  Optimized responsive layout for quick studying on the go.  
+- **Deck Sharing**  
+  Export/import entire decks with shareable links.  
+- **Streaks & Achievements**  
+  Gamified tracking for long-term engagement.  
