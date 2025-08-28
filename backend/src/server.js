@@ -25,6 +25,11 @@ app.use("/api/cards", cardRoutes)
 app.use("/api/search", searchRoutes)
 app.use("/api/stats", statsRoutes)
 
+// health check endpoint
+app.get("/api/health", (req,res)=>{
+  res.json({ ok: true, time: new Date().toISOString() })
+})
+
 const uri = process.env.MONGODB_URI
 await mongoose.connect(uri)
 app.listen(process.env.PORT || 4000)
